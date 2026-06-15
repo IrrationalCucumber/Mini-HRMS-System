@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../dbConfig");
 
-const User = sequelize.define(
+const Emp = sequelize.define(
   "employees",
   {
     employeeID: {
@@ -20,4 +20,4 @@ const User = sequelize.define(
   { tableName: "employees", timestamps: false, freezeTableName: true },
 );
 
-module.exports = User;
+module.exports = Emp;
