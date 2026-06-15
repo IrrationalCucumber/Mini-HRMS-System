@@ -3,6 +3,8 @@ const express = require("express");
 const db = require("./dbConfig.js");
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
+//routes
+const UserRouter = require("./ROUTE/UserRoute");
 
 const app = express();
 app.use(cors());
@@ -17,3 +19,5 @@ app.listen(PORT, () => {
 app.get("/", (_, res) => {
   res.json("Hello, this is the backend server!");
 });
+
+app.use("/", UserRouter);
