@@ -5,6 +5,8 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 //routes
 const UserRouter = require("./ROUTE/UserRoute");
+const EmpRouter = require("./ROUTE/EmpRoute");
+const AttendRouter = require("./ROUTE/AttendRoute");
 
 const app = express();
 app.use(cors());
@@ -21,3 +23,5 @@ app.get("/", (_, res) => {
 });
 
 app.use("/", UserRouter);
+app.use("/employee", EmpRouter);
+app.use("/attendance", AttendRouter);
