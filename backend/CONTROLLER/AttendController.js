@@ -1,4 +1,5 @@
 const Attend = require("../MODEL/Attendance");
+const Employee = require("../MODEL/Employees");
 
 const attController = {
   addAttend: async (req, res) => {
@@ -12,7 +13,7 @@ const attController = {
   //get all attendance
   getAll: async (req, res) => {
     try {
-      const att = await Attend.findAll();
+      const att = await Attend.findAll({ include: [{ model: Employee }] });
       res.json(att);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -22,7 +23,8 @@ const attController = {
   getEmpAttend: async (req, res) => {
     try {
       const att = await Attend.findOne({
-        where: { attendanceID: req.params.id },
+        where: { attendanceEmpID: req.params.id },
+        include: [{ model: Employee }],
       });
       if (!att) return res.status(404).json({ error: "No data found" });
       res.json(att);

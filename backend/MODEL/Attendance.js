@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../dbConfig");
+const Emp = require("./Employees");
 
 const Attendance = sequelize.define(
   "attendance",
@@ -9,7 +10,14 @@ const Attendance = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    attendanceEmpID: DataTypes.INTEGER,
+    //foreign key
+    attendanceEmpID: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "employees",
+        key: "employeeID",
+      },
+    },
     date: DataTypes.DATE,
     time_in: DataTypes.TIME,
     time_out: DataTypes.TIME,
@@ -17,3 +25,14 @@ const Attendance = sequelize.define(
   },
   { tableName: "attendance", timestamps: false, freezeTableName: true },
 );
+
+Attendance.belongsTo(Emp, {
+  foreignKey: "attendanceEmpID",
+  targetKey: "employeeID",
+});
+Emp.hasMany(Attendance, {
+  foreignKey: "attendanceEmpID",
+  sourceKey: "employeeID",
+});
+
+module.exports = Attendance;
