@@ -8,6 +8,7 @@ const UserRouter = require("./ROUTE/UserRoute");
 const EmpRouter = require("./ROUTE/EmpRoute");
 const AttendRouter = require("./ROUTE/AttendRoute");
 const SalaryRouter = require("./ROUTE/SalariesRoute");
+const PayrollRouter = require("./ROUTE/PayrollRoute");
 
 const app = express();
 app.use(cors());
@@ -27,3 +28,4 @@ app.use("/", UserRouter);
 app.use("/employee", EmpRouter);
 app.use("/attendance", AttendRouter);
 app.use("/salaries", SalaryRouter);
+app.use("/payroll", PayrollRouter);
