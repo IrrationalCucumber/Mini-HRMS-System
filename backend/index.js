@@ -7,6 +7,7 @@ const { Sequelize } = require("sequelize");
 const UserRouter = require("./ROUTE/UserRoute");
 const EmpRouter = require("./ROUTE/EmpRoute");
 const AttendRouter = require("./ROUTE/AttendRoute");
+const SalaryRouter = require("./ROUTE/SalariesRoute");
 
 const app = express();
 app.use(cors());
@@ -25,3 +26,4 @@ app.get("/", (_, res) => {
 app.use("/", UserRouter);
 app.use("/employee", EmpRouter);
 app.use("/attendance", AttendRouter);
+app.use("/salaries", SalaryRouter);
