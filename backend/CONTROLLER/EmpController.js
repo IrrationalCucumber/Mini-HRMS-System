@@ -36,7 +36,7 @@ const empController = {
       const emp = await Emp.findByPk(req.params.id);
       if (!emp) return res.status(404).json({ error: "Emplyee not found" });
       await emp.update(req.body);
-      res.json(user);
+      res.json(emp);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
