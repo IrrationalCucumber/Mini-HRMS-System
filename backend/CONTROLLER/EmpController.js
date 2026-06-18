@@ -52,6 +52,33 @@ const empController = {
       res.status(500).json({ error: err.message });
     }
   },
+  //get total num of emp
+  getTotalEmployees: async (_, res) => {
+    try {
+      const count = await Emp.count(); //count all employees
+      res.json({ totalEmployees: count });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+  //get all active employees
+  getAllActiveEmployees: async (_, res) => {
+    try {
+      const emps = await Emp.findAndCountAll({ where: { status: "active" } }); //count all active employees
+      res.json(emps);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+  //get all On Leave employees
+  getAllOnLeaveEmployees: async (_, res) => {
+    try {
+      const emps = await Emp.findAndCountAll({ where: { status: "on leave" } }); //count all on leave employees
+      res.json(emps);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 };
 
 module.exports = empController;

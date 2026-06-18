@@ -7,5 +7,8 @@ router.get("/employee/:id", empController.getEmpById);
 router.post("/add", empController.addNewEmployee);
 router.put("/update/:id", empController.updateEmployeeInfo);
 router.delete("/delete/:id", empController.deleteEmployeeInfo);
+router.get("/total", empController.getTotalEmployees);
+router.get("/active", empController.getAllActiveEmployees);
+router.get("/onleave", empController.getAllOnLeaveEmployees);
 
 module.exports = router;
