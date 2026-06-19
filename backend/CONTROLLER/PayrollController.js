@@ -6,14 +6,14 @@ const payrollController = {
   addEmpPayroll: async (req, res) => {
     try {
       const pay = Payroll.create(req.body);
-      res.status(200).json(pay);
+      res.json(pay);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   },
   //get all payroll
   getAllPayroll: async (req, res) => {
-    const pay = Payroll.findAll({ include: [{ model: Employee }] });
+    const pay = Payroll.findAll();
   },
   //find payroll of employee
   getEmpPayroll: async (req, res) => {

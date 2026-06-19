@@ -22,7 +22,7 @@ const Payroll = sequelize.define(
       },
     },
   },
-  { tableName: "salaries", timestamps: false, freezeTableName: true },
+  { tableName: "payroll", timestamps: false, freezeTableName: true },
 );
 
 Payroll.belongsTo(Emp, {
