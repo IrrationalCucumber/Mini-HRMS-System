@@ -64,7 +64,7 @@ const empController = {
   //get all active employees
   getAllActiveEmployees: async (_, res) => {
     try {
-      const emps = await Emp.findAndCountAll({ where: { status: "active" } }); //count all active employees
+      const emps = await Emp.findAndCountAll({ where: { EmploymentStatus: "active" } }); //count all active employees
       res.json(emps);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -73,7 +73,7 @@ const empController = {
   //get all On Leave employees
   getAllOnLeaveEmployees: async (_, res) => {
     try {
-      const emps = await Emp.findAndCountAll({ where: { status: "on leave" } }); //count all on leave employees
+      const emps = await Emp.findAndCountAll({ where: { EmploymentStatus: "on leave" } }); //count all on leave employees
       res.json(emps);
     } catch (err) {
       res.status(500).json({ error: err.message });
