@@ -23,6 +23,8 @@ import {
   ModalClose,
   Input,
   Stack,
+  Option,
+  Select,
 } from "@mui/joy";
 import { Add, Close, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -290,16 +292,22 @@ const Employees = () => {
                     setNewEmployee({ ...newEmployee, Position: e.target.value })
                   }
                 />
-                <Input
+                <Select
                   placeholder="Department"
                   value={newEmployee.Department}
-                  onChange={(e) =>
+                  onChange={(event, newValue) =>
                     setNewEmployee({
                       ...newEmployee,
-                      Department: e.target.value,
+                      Department: newValue,
                     })
                   }
-                />
+                >
+                  <Option value="HR">HR</Option>
+                  <Option value="IT">IT</Option>
+                  <Option value="Finance">Finance</Option>
+                  <Option value="Marketing">Marketing</Option>
+                  <Option value="Maintenance">Maintenance</Option>
+                </Select>
                 <Input
                   placeholder="Date Hired"
                   type="date"
