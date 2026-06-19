@@ -97,7 +97,7 @@ const Employees = () => {
           color: "error",
         });
         return;
-      //if invalid email format
+        //if invalid email format
       } else if (!/\S+@\S+\.\S+/.test(newEmployee.email)) {
         setSnackbarOpen({
           state: true,
@@ -169,17 +169,18 @@ const Employees = () => {
             size="lg"
           >
             <thead>
-              <th style={{ width: "5%" }}>ID</th>
-              <th style={{ width: "20%" }}>Full Name</th>
-              <th style={{ width: "20%" }}>Email</th>
-              <th style={{ width: "10%" }}>Contact Number</th>
-              <th style={{ width: "10%" }}>Position</th>
-              <th style={{ width: "10%" }}>Department</th>
-              <th style={{ width: "20%" }}>Date Hired</th>
-              <th style={{ width: "10%" }}>Employment Status</th>
-              <th style={{ width: "10%" }}></th>
+              <tr>
+                <th style={{ width: "5%" }}>ID</th>
+                <th style={{ width: "20%" }}>Full Name</th>
+                <th style={{ width: "20%" }}>Email</th>
+                <th style={{ width: "10%" }}>Contact Number</th>
+                <th style={{ width: "10%" }}>Position</th>
+                <th style={{ width: "10%" }}>Department</th>
+                <th style={{ width: "20%" }}>Date Hired</th>
+                <th style={{ width: "10%" }}>Employment Status</th>
+                <th style={{ width: "10%" }}></th>
+              </tr>
             </thead>
-
             <tbody>
               {employees.map((employee) => (
                 <tr key={employee.employeeID}>
@@ -192,6 +193,7 @@ const Employees = () => {
                   <td>{employee.Date_Hired}</td>
                   <td>{employee.EmploymentStatus?.toUpperCase()}</td>
                   <td>
+                    {/* ACTIONS */}
                     <Dropdown>
                       <MenuButton
                         variant="soft"
@@ -205,7 +207,13 @@ const Employees = () => {
                         <Settings />
                       </MenuButton>
                       <Menu variant="outlined" color="primary">
-                        <MenuItem>Edit</MenuItem>
+                        <MenuItem
+                          onClick={() =>
+                            navigate(`/view/employee/${employee.employeeID}`)
+                          }
+                        >
+                          View
+                        </MenuItem>
                         <MenuItem
                           color="danger"
                           onClick={() => handleDelete(employee.employeeID)}
@@ -214,7 +222,7 @@ const Employees = () => {
                         </MenuItem>
                       </Menu>
                     </Dropdown>
-                  </td>{" "}
+                  </td>
                 </tr>
               ))}
             </tbody>
