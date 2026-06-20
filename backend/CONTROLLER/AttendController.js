@@ -38,6 +38,7 @@ const attController = {
       const att = await Attend.findByPk(req.params.id);
       if (!att) return res.status(404).json({ error: "Attendance not found" });
       await att.update(req.body);
+      return res.json(att);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
