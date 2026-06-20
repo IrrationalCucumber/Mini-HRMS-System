@@ -10,7 +10,6 @@ const Attendance = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    //foreign key
     attendanceEmpID: {
       type: DataTypes.INTEGER,
       references: {
@@ -18,12 +17,23 @@ const Attendance = sequelize.define(
         key: "employeeID",
       },
     },
-    date: DataTypes.DATE,
+    date: DataTypes.DATEONLY,
     time_in: DataTypes.TIME,
     time_out: DataTypes.TIME,
     status: DataTypes.STRING,
   },
-  { tableName: "attendance", timestamps: false, freezeTableName: true },
+  {
+    tableName: "attendance",
+    timestamps: false,
+    freezeTableName: true,
+    //for duplication error
+    indexes: [
+      {
+        unique: true,
+        fields: ["attendanceEmpID", "date"],
+      },
+    ],
+  },
 );
 
 Attendance.belongsTo(Emp, {
