@@ -11,6 +11,7 @@ const Salary = sequelize.define(
       autoIncrement: true,
     },
     basic_salary: DataTypes.INTEGER,
+    allowance: DataTypes.INTEGER,
     deduction: DataTypes.INTEGER,
     net_salary: DataTypes.INTEGER,
     sm_empID: {

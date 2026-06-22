@@ -5,7 +5,7 @@ const salariesController = {
   //add employee salary
   addEmpSalary: async (req, res) => {
     try {
-      const sal = Salary.create(req.body);
+      const sal = await Salary.create(req.body);
       res.status(200).json(sal);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -13,7 +13,12 @@ const salariesController = {
   },
   //get all salaries
   getAllSalaries: async (req, res) => {
-    const sal = Salary.findAll({ include: [{ model: Employee }] });
+    try {
+      const sal = await Salary.findAll({ include: [{ model: Employee }] });
+      res.json(sal);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   },
   //find salary of employee
   getEmpSalary: async (req, res) => {
@@ -33,6 +38,7 @@ const salariesController = {
     try {
       const sal = await Salary.findByPk(req.params.id);
       if (!sal) return res.status(404).json({ error: "Data not found" });
+      await sal.update(req.body);
       res.json(sal);
     } catch (err) {
       res.status(500).json({ error: err.message });
