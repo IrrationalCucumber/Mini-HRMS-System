@@ -26,7 +26,7 @@ import {
   Option,
   Select,
 } from "@mui/joy";
-import { Add, Close, Settings } from "@mui/icons-material";
+import { Add, Close, Search, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -138,6 +138,15 @@ const Employees = () => {
       console.error("Error adding new employee:", error);
     }
   };
+  //filter
+  const [filter, setFilter] = useState("");
+  const filterList = employees.filter((employee) => {
+    const name = employee.full_name
+      .toLowerCase()
+      .includes(filter.toLocaleLowerCase());
+
+    return name;
+  });
 
   return (
     <>
@@ -153,16 +162,40 @@ const Employees = () => {
         <Typography level="h1" noWrap={false} variant="plain">
           Employee Management
         </Typography>
-        <Button
-          onClick={() => {
-            setOpenModal(true);
+
+        <Stack
+          direction="row"
+          spacing={2}
+          mb={1}
+          sx={{
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
-          size="lg"
         >
-          <Add /> Add Employee
-        </Button>
+          {/* SEARCG */}
+          <Input
+            startDecorator={<Search />}
+            type="text"
+            placeholder="Search employee"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            sx={{ width: "300px" }}
+          />
+
+          {/* ADD */}
+          <Button
+            onClick={() => {
+              setOpenModal(true);
+            }}
+            size="lg"
+          >
+            <Add /> Add Employee
+          </Button>
+        </Stack>
         <Sheet color="primary" variant="solid">
           <Table
+            hoverRow
             borderAxis="y"
             stickyFooter={false}
             stickyHeader
@@ -175,12 +208,12 @@ const Employees = () => {
                 <th style={{ width: "5%" }}>ID</th>
                 <th style={{ width: "20%" }}>Full Name</th>
                 <th style={{ width: "20%" }}>Email</th>
-                <th style={{ width: "10%" }}>Contact Number</th>
+                <th style={{ width: "10%" }}>Contact #</th>
                 <th style={{ width: "10%" }}>Position</th>
-                <th style={{ width: "10%" }}>Department</th>
-                <th style={{ width: "20%" }}>Date Hired</th>
-                <th style={{ width: "10%" }}>Employment Status</th>
-                <th style={{ width: "10%" }}></th>
+                <th style={{ width: "15%" }}>Department</th>
+                <th style={{ width: "10%" }}>Date Hired</th>
+                <th style={{ width: "10%" }}>Status</th>
+                <th style={{ width: "5%" }}></th>
               </tr>
             </thead>
             <tbody>
