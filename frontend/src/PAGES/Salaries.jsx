@@ -1,4 +1,4 @@
-import { Settings } from "@mui/icons-material";
+import { Search, Settings } from "@mui/icons-material";
 import {
   Button,
   Dropdown,
@@ -150,8 +150,18 @@ const Salaries = () => {
         <Typography level="h1" noWrap={false} variant="plain">
           Salary Management
         </Typography>
-        <Stack direction="row" spacing={2} mb={1}>
+        <Stack
+          direction="row"
+          spacing={2}
+          mb={1}
+          sx={{
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "left",
+          }}
+        >
           <Input
+            startDecorator={<Search />}
             type="text"
             placeholder="Search employee"
             value={filter}
