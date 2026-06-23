@@ -38,6 +38,22 @@ const payrollController = {
       res.status(500).json({ error: err.message });
     }
   },
+  //generate payroll
+  generatePayroll: async (req, res) => {
+    try {
+      await Payroll.bulkCreate(req.body, {
+        ignoreDuplicates: true,
+      });
+
+      res.status(200).json({
+        message: "Payroll generated successfully",
+      });
+    } catch (err) {
+      res.status(500).json({
+        error: err.message,
+      });
+    }
+  },
 };
 
 module.exports = payrollController;
