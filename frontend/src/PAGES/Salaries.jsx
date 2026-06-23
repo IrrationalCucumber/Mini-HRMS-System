@@ -13,8 +13,6 @@ import {
   Modal,
   Input,
   ModalOverflow,
-  Select,
-  Option,
   Stack,
 } from "@mui/joy";
 import axios from "axios";
@@ -86,13 +84,12 @@ const Salaries = () => {
         Number(salary.basic_salary) +
         Number(salary.allowance) -
         Number(salary.deduction);
-      setSalary({ ...salary, sm_empID: id });
+      // setSalary({ ...salary, sm_empID: id });
       const payload = {
         ...salary,
+        sm_empID: id,
         net_salary: netSalary,
       };
-
-      console.log(payload); // now correct
 
       await axios.post(
         `${process.env.REACT_APP_API_URL}/salaries/add`,
@@ -111,7 +108,7 @@ const Salaries = () => {
       Number(salary.basic_salary) +
       Number(salary.allowance) -
       Number(salary.deduction);
-    setSalary({ ...salary, sm_empID: id });
+    // setSalary({ ...salary, sm_empID: id });
     const payload = {
       ...salary,
       sm_empID: empID,
