@@ -23,7 +23,7 @@ const salariesController = {
   //find salary of employee
   getEmpSalary: async (req, res) => {
     try {
-      const sal = await User.findOne({
+      const sal = await Salary.findOne({
         where: { sm_empID: req.params.id },
         include: [{ model: Employee }],
       });
