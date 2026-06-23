@@ -16,16 +16,17 @@ const Payroll = () => {
         const payrollRes = await axios.get(
           `${process.env.REACT_APP_API_URL}/payroll/all`,
         );
-
+        console.log("Payroll Data:", payrollRes.data);
         //get all salary details
         const salaryRes = await axios.get(
           `${process.env.REACT_APP_API_URL}/salaries/all`,
         );
-
+        console.log("Salary Data:", salaryRes.data);
         // Get all employees
         const employeeRes = await axios.get(
           `${process.env.REACT_APP_API_URL}/employee/all`,
         );
+        console.log("Employees:", employeeRes.data);
 
         const payMap = {};
         const salaryMap = {};
@@ -33,19 +34,23 @@ const Payroll = () => {
         salaryRes.data.forEach((salary) => {
           salaryMap[salary.sm_empID] = salary;
         });
+        payrollRes.data.forEach((payroll) => {
+          payMap[payroll.payroll_empID] = payroll;
+        });
 
         const mergedEmployees = employeeRes.data.map((emp) => ({
           ...emp,
 
-          // salary fields
+          // salary
           smID: salaryMap[emp.employeeID]?.smID ?? null,
           basic_salary: salaryMap[emp.employeeID]?.basic_salary ?? null,
           allowance: salaryMap[emp.employeeID]?.allowance ?? null,
           deduction: salaryMap[emp.employeeID]?.deduction ?? null,
           net_salary: salaryMap[emp.employeeID]?.net_salary ?? null,
 
-          // payroll fields
+          // payroll
           payrollID: payMap[emp.employeeID]?.payrollID ?? null,
+          payrolldate: payMap[emp.employeeID]?.payrolldate ?? null,
         }));
 
         setEmployees(mergedEmployees);
@@ -109,7 +114,6 @@ const Payroll = () => {
           Payroll Summary
         </Typography>
         <Stack
-          Stack
           direction="row"
           spacing={2}
           mb={1}
@@ -162,14 +166,15 @@ const Payroll = () => {
                 <tr key={emp.employeeID}>
                   <td>{emp.employeeID}</td>
                   <td>{emp.full_name}</td>
-
+                  <td>₱ {emp.basic_salary ? ` ${emp.basic_salary}` : "00"}</td>
+                  <td>₱ {emp.allowance ? emp.allowance : "00"}</td>
+                  <td>₱ {emp.deduction ? emp.deduction : "00"}</td>
+                  <td>₱ {emp.net_salary ? `${emp.net_salary}` : "0.00"}</td>
                   <td>
-                    {emp.basic_salary ? `₱ ${emp.basic_salary}` : "Not Set"}
+                    {emp.payrolldate
+                      ? new Date(emp.payrolldate).toISOString().split("T")[0]
+                      : "N/A"}
                   </td>
-                  <td>{emp.allowance ? emp.allowance : "Not Set"}</td>
-                  <td>{emp.deduction ? emp.deduction : "Not Set"}</td>
-                  <td>{emp.Department}</td>
-                  <td>{emp.net_salary ? `₱${emp.net_salary}` : "0.00"}</td>
                 </tr>
               ))}
             </tbody>
