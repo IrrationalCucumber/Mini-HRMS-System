@@ -50,7 +50,7 @@ const Salaries = () => {
           smID: salaryMap[emp.employeeID]?.smID ?? null,
           basic_salary: salaryMap[emp.employeeID]?.basic_salary ?? null,
           allowance: salaryMap[emp.employeeID]?.allowance ?? null,
-          deduction: salaryMap[emp.employeeID]?.allowance ?? null,
+          deduction: salaryMap[emp.employeeID]?.deduction ?? null,
           net_salary: salaryMap[emp.employeeID]?.net_salary ?? null,
 
           // Keep the entire salary object if needed later
