@@ -6,32 +6,33 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <Typography level="h2">Mini-HRMS</Typography>
+        <Typography level="h2" className="nav-container-link">
+          <Link to={"/dashboard"}>Mini-HRMS</Link>
+        </Typography>
 
         <ul className="nav-menu">
           <li className="nav-item">
             <Typography>
-              <Link to={"/dashboard"}>Dashboard</Link>{" "}
-            </Typography>
-          </li>
-          <li className="nav-item">
-            <Typography>
-              <Link to={"/employees"}>Employees Management</Link>{" "}
+              <Link to={"/employees"}>Employees Management</Link>
             </Typography>
           </li>
           <li className="nav-item">
             <Typography>
               <Link to={"/attendance"} className="nav-link">
                 Attendance
-              </Link>{" "}
+              </Link>
             </Typography>
           </li>
           <li className="nav-item">
             <Typography>
-              {" "}
               <Link to={"/salary"} className="nav-link">
                 Salary Management
               </Link>
+            </Typography>
+          </li>
+          <li className="nav-item">
+            <Typography>
+              <Link to={"/payroll"}>Payroll</Link>
             </Typography>
           </li>
         </ul>

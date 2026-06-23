@@ -5,6 +5,7 @@ import Employees from "./PAGES/Employees";
 import Employee from "./PAGES/Employee";
 import Attendance from "./PAGES/Attendance";
 import Salaries from "./PAGES/Salaries";
+import Payroll from "./PAGES/Payroll";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/view/employee/:id" element={<Employee />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/salary" element={<Salaries />} />
+          <Route path="/payroll" element={<Payroll />} />
         </Routes>
       </BrowserRouter>
     </>
