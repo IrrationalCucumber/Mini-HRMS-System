@@ -1,63 +1,102 @@
-/* TODO
-  Error handling for login
-*/
-
+import axios from "axios";
 import React, { useState } from "react";
-// import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+import { Button, Card, Typography, Input, Stack } from "@mui/joy";
+
+import { Email, Lock, Login as LoginIcon } from "@mui/icons-material";
+
 const Login = () => {
-  //login cred variable for admin
   const [loginCred, setLoginCred] = useState({
     email: "",
     password: "",
   });
 
-  const apiUrl = process.env.REACT_APP_API_URL; //|| 'http://localhost:8800/admin/login';
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      if (loginCred.email !== "" && loginCred.password !== "") {
-        //const res = await axios.post(`${apiUrl}/admin/login`, loginCred);
-        //console.log(res.data);
-        navigate("/dashboard");
+      if (loginCred.email && loginCred.password) {
+        const response = await axios.post(`${apiUrl}/login`, loginCred);
+        if (response.status === 200 && response.data) {
+          navigate("/dashboard");
+        } else {
+          alert("Invalid Email or Password");
+        }
       } else {
-        return alert("Invalid Email/Password");
+        alert("Please enter both email and password.");
       }
     } catch (error) {
       console.error("Login failed:", error);
+      alert("Login Failed");
     }
   };
+
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={loginCred.email}
-            onChange={(e) =>
-              setLoginCred({ ...loginCred, email: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={loginCred.password}
-            onChange={(e) =>
-              setLoginCred({ ...loginCred, password: e.target.value })
-            }
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f5f8fc",
+      }}
+    >
+      <Card
+        variant="outlined"
+        sx={{
+          width: 400,
+          p: 4,
+          boxShadow: "lg",
+        }}
+      >
+        <Stack spacing={2}>
+          <Typography level="h2" textAlign="center" color="primary">
+            Mini-HRMS
+          </Typography>
+
+          <Typography level="body-md" textAlign="center">
+            Administrator Login
+          </Typography>
+
+          <form onSubmit={handleLogin}>
+            <Stack spacing={2}>
+              <Input
+                startDecorator={<Email />}
+                placeholder="Email Address"
+                type="email"
+                value={loginCred.email}
+                onChange={(e) =>
+                  setLoginCred({
+                    ...loginCred,
+                    email: e.target.value,
+                  })
+                }
+              />
+
+              <Input
+                startDecorator={<Lock />}
+                placeholder="Password"
+                type="password"
+                value={loginCred.password}
+                onChange={(e) =>
+                  setLoginCred({
+                    ...loginCred,
+                    password: e.target.value,
+                  })
+                }
+              />
+
+              <Button type="submit" size="lg" startDecorator={<LoginIcon />}>
+                Login
+              </Button>
+            </Stack>
+          </form>
+        </Stack>
+      </Card>
     </div>
   );
 };
