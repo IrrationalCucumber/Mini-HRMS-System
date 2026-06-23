@@ -5,7 +5,7 @@ const payrollController = {
   //add employee payroll
   addEmpPayroll: async (req, res) => {
     try {
-      const pay = Payroll.create(req.body);
+      const pay = await Payroll.create(req.body);
       res.json(pay);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -13,12 +13,17 @@ const payrollController = {
   },
   //get all payroll
   getAllPayroll: async (req, res) => {
-    const pay = Payroll.findAll();
+    try {
+      const pay = await Payroll.findAll();
+      res.json(pay);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   },
   //find payroll of employee
   getEmpPayroll: async (req, res) => {
     try {
-      const pay = await User.findOne({
+      const pay = await Payroll.findOne({
         where: { payroll_empID: req.params.id },
         include: [{ model: Employee }],
       });
