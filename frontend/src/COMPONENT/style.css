@@ -12,6 +12,10 @@
   align-items: center;
   justify-content: space-between;
 }
+.nav-container-link a {
+  color: white;
+  text-decoration: none;
+}
 
 /* TITLE */
 .navbar h2 {
