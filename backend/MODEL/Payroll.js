@@ -13,7 +13,7 @@ const Payroll = sequelize.define(
     allowance: DataTypes.INTEGER,
     deductions: DataTypes.INTEGER,
     net_salary: DataTypes.INTEGER,
-    payrolldate: DataTypes.DATE,
+    payrolldate: DataTypes.DATEONLY,
     payroll_empID: {
       type: DataTypes.INTEGER,
       references: {
