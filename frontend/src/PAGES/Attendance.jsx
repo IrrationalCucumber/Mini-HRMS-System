@@ -12,6 +12,7 @@ import {
 } from "@mui/joy";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../COMPONENT/Navbar";
 
 const Attendance = () => {
   const [employees, setEmployees] = useState([]);
@@ -163,6 +164,7 @@ const Attendance = () => {
   };
   return (
     <>
+      <Navbar />
       <div
         style={{
           display: "flex",

@@ -19,6 +19,7 @@ import {
 } from "@mui/joy";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Navbar from "../COMPONENT/Navbar";
 
 const Salaries = () => {
   // Store combined employee + salary data
@@ -138,6 +139,7 @@ const Salaries = () => {
   });
   return (
     <>
+      <Navbar />
       <div
         style={{
           display: "flex",

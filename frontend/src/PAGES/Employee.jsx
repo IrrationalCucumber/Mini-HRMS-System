@@ -161,7 +161,8 @@ const Employee = () => {
           disabled={editable}
           onChange={(event, newValue) =>
             setEmployee({
-              ...employee,EmploymentStatus: newValue,
+              ...employee,
+              EmploymentStatus: newValue,
             })
           }
         >

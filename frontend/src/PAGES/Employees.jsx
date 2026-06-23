@@ -1,10 +1,3 @@
-/**
- * TODO
- *     
-    Edit Employee details
-    Add new employee
-    Delete new emplyee
- */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -28,6 +21,8 @@ import {
 } from "@mui/joy";
 import { Add, Close, Search, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../COMPONENT/Navbar";
+
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
@@ -150,6 +145,7 @@ const Employees = () => {
 
   return (
     <>
+      <Navbar />
       <div
         style={{
           display: "flex",

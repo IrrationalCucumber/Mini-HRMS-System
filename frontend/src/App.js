@@ -3,7 +3,6 @@ import Login from "./PAGES/Login";
 import Dashboard from "./PAGES/Dashboard";
 import Employees from "./PAGES/Employees";
 import Employee from "./PAGES/Employee";
-import Navbar from "./COMPONENT/Navbar";
 import Attendance from "./PAGES/Attendance";
 import Salaries from "./PAGES/Salaries";
 
@@ -11,7 +10,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
