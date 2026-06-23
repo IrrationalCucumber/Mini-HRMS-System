@@ -3,8 +3,8 @@ const payrollController = require("../CONTROLLER/PayrollController");
 const router = express.Router();
 
 router.get("/all", payrollController.getAllPayroll);
-router.get("/employee", payrollController.getEmpPayroll);
+router.get("/employee/:id", payrollController.getEmpPayroll);
 router.post("/add", payrollController.addEmpPayroll);
-router.put("/update", payrollController.updateEmpPayroll);
+router.put("/update/:id", payrollController.updateEmpPayroll);
 
 module.exports = router;
