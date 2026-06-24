@@ -200,17 +200,17 @@ Mini-HRMS-System/
 - Check database credentials in `.env` file
 - Ensure port 8800 is not in use
 
-**Frontend won't connect to backend:**<img width="1365" height="602" alt="Screenshot 2026-06-23 214002" src="https://github.com/user-attachments/assets/c466743b-7173-457c-978a-f65ddb3029c5" />
-<img width="1365" height="606" alt="Screenshot 2026-06-23 213946" src="https://github.com/user-attachments/assets/93702d5b-1236-4e4f-acab-411305a4e36f" />
-<img width="1365" height="604" alt="Screenshot 2026-06-23 213932" src="https://github.com/user-attachments/assets/16308f44-9695-4d61-81f4-6de9a285d1e3" />
-<img width="1364" height="604" alt="Screenshot 2026-06-23 213905" src="https://github.com/user-attachments/assets/cd97996b-053b-41b4-8c3c-2da731c096a2" />
-
+**Frontend won't connect to backend:**
 
 - Verify backend is running on port 8800
 - Check `REACT_APP_API_URL` in frontend `.env` file
 - Clear browser cache and restart the development server
 
 ## SCREENSHOTS
+<img width="1365" height="602" alt="Screenshot 2026-06-23 214002" src="https://github.com/user-attachments/assets/c466743b-7173-457c-978a-f65ddb3029c5" />
+<img width="1365" height="606" alt="Screenshot 2026-06-23 213946" src="https://github.com/user-attachments/assets/93702d5b-1236-4e4f-acab-411305a4e36f" />
+<img width="1365" height="604" alt="Screenshot 2026-06-23 213932" src="https://github.com/user-attachments/assets/16308f44-9695-4d61-81f4-6de9a285d1e3" />
+<img width="1364" height="604" alt="Screenshot 2026-06-23 213905" src="https://github.com/user-attachments/assets/cd97996b-053b-41b4-8c3c-2da731c096a2" />
 <img width="1359" height="602" alt="Screenshot 2026-06-23 213751" src="https://github.com/user-attachments/assets/fd829e57-6998-4579-a1fe-1c092f176d2e" />
 <img width="1365" height="601" alt="Screenshot 2026-06-24 155427" src="https://github.com/user-attachments/assets/5b7aabe1-0b82-495a-9a36-ce1b0958bf2c" />
 <img width="1363" height="600" alt="Screenshot 2026-06-23 214638" src="https://github.com/user-attachments/assets/80f1ba9e-0309-44c1-82c0-0f2bf0b55599" />
