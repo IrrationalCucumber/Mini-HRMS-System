@@ -1,12 +1,31 @@
 import { Input, Sheet, Stack, Table } from "@mui/joy";
 import Navbar from "../COMPONENT/Navbar";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Add, Search } from "@mui/icons-material";
 import TitleText from "../COMPONENT/Text";
 import ButtonComp from "../COMPONENT/Button";
 
 const Payroll = () => {
+  const navigate = useNavigate();
+  //format numbers for dispaly
+  const formatCurrency = (amount) => {
+    if (amount === null || amount === undefined || amount === "") {
+      return "₱ 0.00";
+    }
+    return `₱ ${Number(amount).toFixed(2)}`;
+  };
+  // printable payslip
+  const handlePrintPayslip = (emp) => {
+    if (!emp.payrolldate) {
+      alert("No payroll record available to print.");
+      return;
+    }
+
+    navigate(`/payslip/${emp.employeeID}`);
+  };
+
   // Store combined employee + salary data
   const [employees, setEmployees] = useState([]);
 
@@ -166,14 +185,22 @@ const Payroll = () => {
                 <tr key={emp.employeeID}>
                   <td>{emp.employeeID}</td>
                   <td>{emp.full_name}</td>
-                  <td>₱ {emp.basic_salary ? ` ${emp.basic_salary}` : "00"}</td>
-                  <td>₱ {emp.allowance ? emp.allowance : "00"}</td>
-                  <td>₱ {emp.deduction ? emp.deduction : "00"}</td>
-                  <td>₱ {emp.net_salary ? `${emp.net_salary}` : "0.00"}</td>
+                  <td>{formatCurrency(emp.basic_salary)}</td>
+                  <td>{formatCurrency(emp.allowance)}</td>
+                  <td>{formatCurrency(emp.deduction)}</td>
+                  <td>{formatCurrency(emp.net_salary)}</td>
                   <td>
                     {emp.payrolldate
                       ? new Date(emp.payrolldate).toISOString().split("T")[0]
                       : "N/A"}
+                  </td>
+                  <td>
+                    <ButtonComp
+                      size="sm"
+                      variant="outlined"
+                      onClick={() => handlePrintPayslip(emp)}
+                      content="Print"
+                    />
                   </td>
                 </tr>
               ))}
