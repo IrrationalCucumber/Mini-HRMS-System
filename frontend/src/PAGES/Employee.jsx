@@ -3,7 +3,6 @@ import {
   Stack,
   Option,
   Select,
-  Typography,
   Button,
   Snackbar,
   IconButton,
@@ -21,6 +20,7 @@ import {
   Work,
   Close,
 } from "@mui/icons-material";
+import TitleText from "../COMPONENT/Text";
 
 const Employee = () => {
   const { id } = useParams();
@@ -63,9 +63,12 @@ const Employee = () => {
   };
   return (
     <>
-      <Typography level="h2" fontWeight="bold" mb={2}>
-        Employee Details
-      </Typography>
+      <TitleText
+        level={"h2"}
+        fontWeight={"bold"}
+        mb={2}
+        content={"Employee Details"}
+      />
       {/* Edit/Save Buttons */}
       <Stack direction="row" spacing={2} mb={3}>
         <Button variant="outlined" onClick={() => setEditable(!editable)}>

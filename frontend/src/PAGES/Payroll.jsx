@@ -1,8 +1,9 @@
-import { Button, Input, Sheet, Stack, Table, Typography } from "@mui/joy";
+import { Button, Input, Sheet, Stack, Table } from "@mui/joy";
 import Navbar from "../COMPONENT/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Add, Search } from "@mui/icons-material";
+import TitleText from "../COMPONENT/Text";
 
 const Payroll = () => {
   // Store combined employee + salary data
@@ -110,9 +111,8 @@ const Payroll = () => {
           marginTop: "2rem",
         }}
       >
-        <Typography level="h1" noWrap={false} variant="plain">
-          Payroll Summary
-        </Typography>
+        <TitleText level="h1" variant="plain" content="Payroll Summary" />
+
         <Stack
           direction="row"
           spacing={2}

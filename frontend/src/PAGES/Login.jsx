@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Card, Typography, Input, Stack } from "@mui/joy";
+import { Button, Card, Input, Stack } from "@mui/joy";
 
 import { Email, Lock, Login as LoginIcon } from "@mui/icons-material";
+import TitleText from "../COMPONENT/Text";
 
 const Login = () => {
   const [loginCred, setLoginCred] = useState({
@@ -54,13 +55,17 @@ const Login = () => {
         }}
       >
         <Stack spacing={2}>
-          <Typography level="h2" textAlign="center" color="primary">
-            Mini-HRMS
-          </Typography>
-
-          <Typography level="body-md" textAlign="center">
-            Administrator Login
-          </Typography>
+          <TitleText
+            level="h2"
+            textAlign="center"
+            color="primary"
+            content="Mini-HRMS"
+          />
+          <TitleText
+            level="body-md"
+            textAlign="center"
+            content="Administrator Login"
+          />
 
           <form onSubmit={handleLogin}>
             <Stack spacing={2}>

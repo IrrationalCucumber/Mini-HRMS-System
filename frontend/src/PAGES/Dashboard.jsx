@@ -1,18 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "../COMPONENT/Navbar";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  Sheet,
-  Stack,
-  Typography,
-} from "@mui/joy";
+import { Button, Card, CardActions, CardContent } from "@mui/joy";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "@mui/icons-material";
+import TitleText from "../COMPONENT/Text";
 
 const Dashboard = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -65,11 +57,12 @@ const Dashboard = () => {
         }}
       >
         <div style={{ textAlign: "center" }}>
-          <h2 style={{ margin: "0 0 0.5rem 0" }}>HR Management System</h2>
-          <h3 style={{ margin: 0, color: "#666" }}>Dashboard</h3>
+          <TitleText level={"h2"} mb={1} content="HR Management System" />
+          <TitleText level={"h3"} color="neutral" mb={0} content="Dashboard" />
         </div>
 
         <div
+          className="card__wrap"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
@@ -86,9 +79,10 @@ const Dashboard = () => {
             variant="solid"
           >
             <CardContent sx={{ textAlign: "center", width: "100%" }}>
-              <Typography level="h3">
-                Total Employees: {displayCounts.totalEmployees}
-              </Typography>
+              <TitleText
+                level="h3"
+                content={`Total Employees: ${displayCounts.totalEmployees}`}
+              />
               <CardActions
                 sx={{ justifyContent: "center", width: "100%", pt: 1 }}
               >
@@ -112,9 +106,11 @@ const Dashboard = () => {
             variant="outlined"
           >
             <CardContent sx={{ textAlign: "center", width: "100%" }}>
-              <Typography color="neutral" level="h3">
-                Active Employees: {displayCounts.activeEmployees}
-              </Typography>
+              <TitleText
+                color="neutral"
+                level="h3"
+                content={`Active Employees: ${displayCounts.activeEmployees}`}
+              />
             </CardContent>
           </Card>
 
@@ -125,9 +121,11 @@ const Dashboard = () => {
             variant="outlined"
           >
             <CardContent sx={{ textAlign: "center", width: "100%" }}>
-              <Typography color="neutral" level="h3">
-                Employees on Leave: {displayCounts.employeesOnLeave}
-              </Typography>
+              <TitleText
+                level="h3"
+                color="neutral"
+                content={` Employees on Leave: ${displayCounts.employeesOnLeave}`}
+              />
             </CardContent>
           </Card>
 
@@ -138,9 +136,11 @@ const Dashboard = () => {
             variant="solid"
           >
             <CardContent sx={{ textAlign: "center", width: "100%" }}>
-              <Typography level="h3">
-                Total Monthly Payroll: ₱ {displayCounts.totalMonthlyPayroll}
-              </Typography>
+              <TitleText
+                variant="plain"
+                level="h3"
+                content={`Total Monthly Payroll: ₱ ${displayCounts.totalMonthlyPayroll}`}
+              />
               <CardActions
                 sx={{ justifyContent: "center", width: "100%", pt: 1 }}
               >

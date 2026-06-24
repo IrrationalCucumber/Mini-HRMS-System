@@ -1,5 +1,4 @@
 import {
-  Typography,
   Button,
   Stack,
   Sheet,
@@ -13,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../COMPONENT/Navbar";
+import TitleText from "../COMPONENT/Text";
 
 const Attendance = () => {
   const [employees, setEmployees] = useState([]);
@@ -174,10 +174,7 @@ const Attendance = () => {
           marginTop: "2rem",
         }}
       >
-        <Typography level="h1" fontSize="xl2" mb={2}>
-          Attendance
-        </Typography>
-
+        <TitleText level={"h1"} fontSize="x12" mb={2} content="Attendance" />
         <Stack direction="row" spacing={2} mb={1}>
           <Button onClick={() => setFilter("today")}>Today</Button>
           <Button onClick={() => setFilter("yesterday")}>Yesterday</Button>
@@ -248,7 +245,7 @@ const Attendance = () => {
                     <Modal open={openModal} onClose={() => setOpenModal(false)}>
                       <ModalDialog color="primary" size="md" variant="soft">
                         <ModalClose />
-                        <Typography>Update Status</Typography>
+                        <TitleText content="Update Status" />
                         <Select
                           placeholder="Select status"
                           value={status}

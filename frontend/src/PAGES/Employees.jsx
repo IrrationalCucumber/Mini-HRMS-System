@@ -8,7 +8,6 @@ import {
   Menu,
   MenuButton,
   MenuItem,
-  Typography,
   Snackbar,
   IconButton,
   Modal,
@@ -22,6 +21,7 @@ import {
 import { Add, Close, Search, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../COMPONENT/Navbar";
+import TitleText from "../COMPONENT/Text";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -118,7 +118,7 @@ const Employees = () => {
         });
         return;
       } else {
-        const res = await axios.post(
+        await axios.post(
           `${process.env.REACT_APP_API_URL}/employee/add`,
           newEmployee,
         );
@@ -155,10 +155,12 @@ const Employees = () => {
           marginTop: "2rem",
         }}
       >
-        <Typography level="h1" noWrap={false} variant="plain">
-          Employee Management
-        </Typography>
-
+        <TitleText
+          level={"h1"}
+          noWrap={false}
+          variant={"plain"}
+          content={"Employee Management"}
+        />
         <Stack
           direction="row"
           spacing={2}
@@ -213,7 +215,7 @@ const Employees = () => {
               </tr>
             </thead>
             <tbody>
-              {employees.map((employee) => (
+              {filterList.map((employee) => (
                 <tr key={employee.employeeID}>
                   <td>{employee.employeeID}</td>
                   <td>{employee.full_name}</td>
@@ -280,7 +282,7 @@ const Employees = () => {
         <Modal open={openModal} onClose={() => setOpenModal(false)}>
           <ModalDialog color="primary" size="lg" variant="soft">
             <ModalClose />
-            <Typography>Add New Employee</Typography>
+            <TitleText content={"Add New Employee"} />
             <form
               onSubmit={(e) => {
                 addNewEmployee(e);

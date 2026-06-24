@@ -18,6 +18,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Navbar from "../COMPONENT/Navbar";
+import TitleText from "../COMPONENT/Text";
 
 const Salaries = () => {
   // Store combined employee + salary data
@@ -146,9 +147,7 @@ const Salaries = () => {
           marginTop: "2rem",
         }}
       >
-        <Typography level="h1" noWrap={false} variant="plain">
-          Salary Management
-        </Typography>
+        <TitleText level="h1" variant="plain" content="Salary Management" />
         <Stack
           direction="row"
           spacing={2}
@@ -240,9 +239,10 @@ const Salaries = () => {
               <ModalOverflow>
                 <ModalDialog color="primary" variant="soft">
                   <ModalClose />
-                  <Typography>
-                    {selectEmp?.smID ? "Edit Salary" : "Add Salary"}
-                  </Typography>
+                  <TitleText
+                    textAlign="center"
+                    content={selectEmp?.smID ? "Edit Salary" : "Add Salary"}
+                  />
                   <Typography
                     level="title-md"
                     sx={{
