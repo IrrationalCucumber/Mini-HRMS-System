@@ -19,6 +19,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Navbar from "../COMPONENT/Navbar";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Salaries = () => {
   // Store combined employee + salary data
@@ -311,15 +312,14 @@ const Salaries = () => {
                   {Number(salary.basic_salary) +
                     Number(salary.allowance) -
                     Number(salary.deduction)}
-                  <Button
+                  <ButtonComp
                     onClick={() =>
                       selectEmp?.smID
                         ? handleEditSalary(selectEmp.smID, selectEmp.employeeID)
                         : handleAddSalary(selectEmp.employeeID)
                     }
-                  >
-                    {selectEmp?.smID ? "Edit" : "Add"}
-                  </Button>
+                    content={selectEmp?.smID ? "Edit" : "Add"}
+                  />
                 </ModalDialog>
               </ModalOverflow>
             </Modal>

@@ -1,5 +1,4 @@
 import {
-  Button,
   Stack,
   Sheet,
   Table,
@@ -13,6 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../COMPONENT/Navbar";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Attendance = () => {
   const [employees, setEmployees] = useState([]);
@@ -176,13 +176,18 @@ const Attendance = () => {
       >
         <TitleText level={"h1"} fontSize="x12" mb={2} content="Attendance" />
         <Stack direction="row" spacing={2} mb={1}>
-          <Button onClick={() => setFilter("today")}>Today</Button>
-          <Button onClick={() => setFilter("yesterday")}>Yesterday</Button>
-          <Button onClick={() => setFilter("all")}>All</Button>
+          <ButtonComp onClick={() => setFilter("today")} content="Today" />
+          <ButtonComp
+            onClick={() => setFilter("yesterday")}
+            content="Yesterday"
+          />
+          <ButtonComp onClick={() => setFilter("all")} content="All" />
         </Stack>
-        <Button color="success" onClick={handleGenerateTodayAttendance}>
-          Generate Today's Attendance
-        </Button>
+        <ButtonComp
+          color="success"
+          onClick={handleGenerateTodayAttendance}
+          content="Generate Today's Attendance"
+        />
 
         <Sheet color="primary" variant="solid">
           <Table
@@ -214,34 +219,37 @@ const Attendance = () => {
                   <td>{record.date}</td>
                   <td>
                     {!record.time_in ? (
-                      <button
+                      <ButtonComp
+                        variant="outlined"
                         onClick={() => {
                           handleTimeIn(record.attendanceID);
                         }}
-                      >
-                        TIME IN
-                      </button>
+                        content="TIME IN"
+                      />
                     ) : (
                       `${record.time_in}`
                     )}
                   </td>
                   <td>
                     {!record.time_out ? (
-                      <button
+                      <ButtonComp
+                        variant="outlined"
                         onClick={() => {
                           handleTimeOut(record.attendanceID);
                         }}
-                      >
-                        TIME OUT
-                      </button>
+                        content="TIME OUT"
+                      />
                     ) : (
                       `${record.time_out}`
                     )}
                   </td>
                   <td>
-                    <Button variant="plain" onClick={(e) => setOpenModal(true)}>
-                      {record.status}
-                    </Button>
+                    <ButtonComp
+                      variant="plain"
+                      onClick={(e) => setOpenModal(true)}
+                      content={record.status}
+                    />
+
                     <Modal open={openModal} onClose={() => setOpenModal(false)}>
                       <ModalDialog color="primary" size="md" variant="soft">
                         <ModalClose />
@@ -256,13 +264,12 @@ const Attendance = () => {
                           <Option value="Late">Late</Option>
                           <Option value="On Leave">On Leave</Option>
                         </Select>
-                        <Button
+                        <ButtonComp
                           onClick={() => {
                             handleUpdateStatus(record.attendanceID);
                           }}
-                        >
-                          Update
-                        </Button>
+                          content="Update"
+                        />
                       </ModalDialog>
                     </Modal>
                   </td>

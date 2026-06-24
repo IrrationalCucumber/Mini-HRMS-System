@@ -22,6 +22,7 @@ import { Add, Close, Search, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../COMPONENT/Navbar";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -182,14 +183,14 @@ const Employees = () => {
           />
 
           {/* ADD */}
-          <Button
+          <ButtonComp
             onClick={() => {
               setOpenModal(true);
             }}
             size="lg"
-          >
-            <Add /> Add Employee
-          </Button>
+            content="Add Employee"
+            startDecorator={<Add />}
+          />
         </Stack>
         <Sheet color="primary" variant="solid">
           <Table
@@ -282,7 +283,7 @@ const Employees = () => {
         <Modal open={openModal} onClose={() => setOpenModal(false)}>
           <ModalDialog color="primary" size="lg" variant="soft">
             <ModalClose />
-            <TitleText content={"Add New Employee"} />
+            <TitleText textAlign="center" content={"Add New Employee"} />
             <form
               onSubmit={(e) => {
                 addNewEmployee(e);
@@ -350,7 +351,7 @@ const Employees = () => {
                     })
                   }
                 />
-                <Button type="submit">Submit</Button>
+                <ButtonComp type="submit" content="Submit" />
               </Stack>
             </form>
           </ModalDialog>

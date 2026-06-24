@@ -1,9 +1,10 @@
-import { Button, Input, Sheet, Stack, Table } from "@mui/joy";
+import { Input, Sheet, Stack, Table } from "@mui/joy";
 import Navbar from "../COMPONENT/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Add, Search } from "@mui/icons-material";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Payroll = () => {
   // Store combined employee + salary data
@@ -130,15 +131,14 @@ const Payroll = () => {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           />
-          <Button
+          <ButtonComp
             onClick={() => {
               handleGeneratePayroll();
             }}
             size="lg"
             startDecorator={<Add />}
-          >
-            Generate Payrolls
-          </Button>
+            content="Generate Payrolls"
+          />
         </Stack>
         <Sheet color="primary" variant="solid">
           <Table

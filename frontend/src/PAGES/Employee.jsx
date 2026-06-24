@@ -1,12 +1,4 @@
-import {
-  Input,
-  Stack,
-  Option,
-  Select,
-  Button,
-  Snackbar,
-  IconButton,
-} from "@mui/joy";
+import { Input, Stack, Option, Select, Snackbar, IconButton } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -21,6 +13,7 @@ import {
   Close,
 } from "@mui/icons-material";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Employee = () => {
   const { id } = useParams();
@@ -71,18 +64,19 @@ const Employee = () => {
       />
       {/* Edit/Save Buttons */}
       <Stack direction="row" spacing={2} mb={3}>
-        <Button variant="outlined" onClick={() => setEditable(!editable)}>
-          {editable ? "Edit" : "Cancel"}
-        </Button>
-        <Button
+        <ButtonComp
+          variant="outlined"
+          onClick={() => setEditable(!editable)}
+          content={editable ? "Edit" : "Cancel"}
+        />
+        <ButtonComp
           variant="solid"
           disabled={editable}
           color="success"
           sx={{ ml: 2 }}
           onClick={onSaveChange}
-        >
-          Save
-        </Button>
+          content="Save"
+        />
       </Stack>
       {/* Alert Snackbar */}
       <Snackbar

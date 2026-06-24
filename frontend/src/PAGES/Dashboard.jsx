@@ -5,6 +5,7 @@ import { Button, Card, CardActions, CardContent } from "@mui/joy";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "@mui/icons-material";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Dashboard = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -87,13 +88,12 @@ const Dashboard = () => {
                 sx={{ justifyContent: "center", width: "100%", pt: 1 }}
               >
                 <Link to={"/employees"} style={{ textDecoration: "none" }}>
-                  <Button
+                  <ButtonComp
                     endDecorator={<ArrowRight />}
                     variant="soft"
                     size="sm"
-                  >
-                    See Employees
-                  </Button>
+                    content="See Employees"
+                  />
                 </Link>
               </CardActions>
             </CardContent>
@@ -145,13 +145,12 @@ const Dashboard = () => {
                 sx={{ justifyContent: "center", width: "100%", pt: 1 }}
               >
                 <Link to={"/payroll"} style={{ textDecoration: "none" }}>
-                  <Button
+                  <ButtonComp
                     endDecorator={<ArrowRight />}
                     variant="soft"
                     size="sm"
-                  >
-                    See Payroll Summary
-                  </Button>
+                    content="See Payroll Summary"
+                  />
                 </Link>
               </CardActions>
             </CardContent>

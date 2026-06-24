@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Card, Input, Stack } from "@mui/joy";
+import { Card, Input, Stack } from "@mui/joy";
 
 import { Email, Lock, Login as LoginIcon } from "@mui/icons-material";
 import TitleText from "../COMPONENT/Text";
+import ButtonComp from "../COMPONENT/Button";
 
 const Login = () => {
   const [loginCred, setLoginCred] = useState({
@@ -94,10 +95,12 @@ const Login = () => {
                   })
                 }
               />
-
-              <Button type="submit" size="lg" startDecorator={<LoginIcon />}>
-                Login
-              </Button>
+              <ButtonComp
+                type="submit"
+                size="lg"
+                startDecorator={<LoginIcon />}
+                content="Login"
+              />
             </Stack>
           </form>
         </Stack>
