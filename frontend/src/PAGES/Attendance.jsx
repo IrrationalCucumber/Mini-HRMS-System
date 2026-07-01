@@ -77,6 +77,7 @@ const Attendance = () => {
       console.error("Error generating attendance:", err);
     }
   };
+  const [currentTime, setCurrentTime] = useState();
   //present time
   // HH:MM:SS
   const getCurrentTime = () => {
@@ -85,7 +86,7 @@ const Attendance = () => {
   //time in change
   const handleTimeIn = async (id) => {
     try {
-      const time = getCurrentTime();
+      const time = currentTime; //get present time
       const cutoff = "8:00:00";
       var Status = "";
       //convert to numbers
@@ -94,7 +95,7 @@ const Attendance = () => {
         return h * 3600 + m * 60 + s;
       };
       //detirmine status
-      if (toSeconds(time) >= toSeconds(cutoff)) {
+      if (time >= cutoff) {
         Status = "Late";
       } else {
         Status = "Present";
@@ -122,12 +123,12 @@ const Attendance = () => {
   //time-out
   const handleTimeOut = async (id) => {
     try {
-      const time = getCurrentTime();
+      // const time = getCurrentTime();
       //send to backend
       await axios.put(
         `${process.env.REACT_APP_API_URL}/attendance/update/${id}`,
         {
-          time_out: time,
+          time_out: currentTime,
         },
       );
       //refetch records
@@ -219,27 +220,56 @@ const Attendance = () => {
                   <td>{record.date}</td>
                   <td>
                     {!record.time_in ? (
-                      <ButtonComp
-                        variant="outlined"
-                        onClick={() => {
-                          handleTimeIn(record.attendanceID);
-                        }}
-                        content="TIME IN"
-                      />
+                      <>
+                        <input
+                          aria-label="Time"
+                          type="time"
+                          onChange={(e) => {
+                            setCurrentTime(e.target.value);
+                          }}
+                        />
+                        <button
+                          onClick={() => handleTimeIn(record.attendanceID)}
+                        >
+                          SAVE
+                        </button>
+                      </>
                     ) : (
+                      // <ButtonComp
+                      //   variant="outlined"
+                      //   onClick={() => {
+                      //     handleTimeIn(record.attendanceID);
+                      //   }}
+                      //   content="TIME IN"
+                      // />
                       `${record.time_in}`
                     )}
                   </td>
                   <td>
                     {!record.time_out ? (
-                      <ButtonComp
-                        variant="outlined"
-                        onClick={() => {
-                          handleTimeOut(record.attendanceID);
-                        }}
-                        content="TIME OUT"
-                      />
+                      <>
+                        <input
+                          aria-label="Time"
+                          type="time"
+                          //value={currentTime}
+                          onChange={(e) => {
+                            setCurrentTime(e.target.value);
+                          }}
+                        />
+                        <button
+                          onClick={() => handleTimeOut(record.attendanceID)}
+                        >
+                          SAVE
+                        </button>
+                      </>
                     ) : (
+                      // <ButtonComp
+                      //   variant="outlined"
+                      //   onClick={() => {
+                      //     handleTimeOut(record.attendanceID);
+                      //   }}
+                      //   content="TIME OUT"
+                      // />
                       `${record.time_out}`
                     )}
                   </td>
