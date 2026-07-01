@@ -8,11 +8,13 @@ import {
   Select,
   Option,
 } from "@mui/joy";
+import { Check } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../COMPONENT/Navbar";
 import TitleText from "../COMPONENT/Text";
 import ButtonComp from "../COMPONENT/Button";
+import ChipComp from "../COMPONENT/Chip";
 
 const Attendance = () => {
   const [employees, setEmployees] = useState([]);
@@ -203,10 +205,10 @@ const Attendance = () => {
               <tr>
                 <th style={{ width: "5%" }}>ID</th>
                 <th style={{ width: "5%" }}>Employee</th>
-                <th style={{ width: "30%" }}>Name</th>
+                <th style={{ width: "25%" }}>Name</th>
                 <th style={{ width: "15%" }}>Date</th>
-                <th style={{ width: "10%" }}>Time In</th>
-                <th style={{ width: "10%" }}>Time Out</th>
+                <th style={{ width: "15%" }}>Time In</th>
+                <th style={{ width: "15%" }}>Time Out</th>
                 <th style={{ width: "15%" }}>Status</th>
               </tr>
             </thead>
@@ -228,20 +230,15 @@ const Attendance = () => {
                             setCurrentTime(e.target.value);
                           }}
                         />
-                        <button
+                        <ChipComp
                           onClick={() => handleTimeIn(record.attendanceID)}
-                        >
-                          SAVE
-                        </button>
+                          color="primary"
+                          size="md"
+                          variant="outlined"
+                          startDecorator={<Check />}
+                        />
                       </>
                     ) : (
-                      // <ButtonComp
-                      //   variant="outlined"
-                      //   onClick={() => {
-                      //     handleTimeIn(record.attendanceID);
-                      //   }}
-                      //   content="TIME IN"
-                      // />
                       `${record.time_in}`
                     )}
                   </td>
@@ -249,18 +246,19 @@ const Attendance = () => {
                     {!record.time_out ? (
                       <>
                         <input
-                          aria-label="Time"
                           type="time"
                           //value={currentTime}
                           onChange={(e) => {
                             setCurrentTime(e.target.value);
                           }}
                         />
-                        <button
+                        <ChipComp
+                          color="primary"
                           onClick={() => handleTimeOut(record.attendanceID)}
-                        >
-                          SAVE
-                        </button>
+                          size="md"
+                          variant="outlined"
+                          startDecorator={<Check />}
+                        />
                       </>
                     ) : (
                       // <ButtonComp
